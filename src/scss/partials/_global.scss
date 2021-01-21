@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+
+html, body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 10px;
+}
+
+h1.hero, h1, h2 {
+    color: map-get($font-colors, 'purple' );
+}
+
+h3, h4, h5, h6 {
+    color: map-get($font-colors , 'grey' );
+}
+
+p {
+    color: map-get($font-colors , 'lightgrey' );
+}
+
+a {
+    color: map-get($font-colors , 'lightgreen' );
+}
