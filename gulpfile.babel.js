@@ -70,6 +70,11 @@ gulp.task('js', (done) => {
 });
 
 gulp.task('img', (done) => {
+  gulp.src(paths.images.src).pipe(gulp.dest(paths.images.dest));
+  done();
+});
+
+gulp.task('img-build', (done) => {
   gulp.src(paths.images.src).pipe(imagemin()).pipe(gulp.dest(paths.images.dest));
   done();
 });
@@ -81,11 +86,12 @@ gulp.task('bootstrap', (done) => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch(paths.static.src).on('change', gulp.series('build'));
-  gulp.watch(paths.styles.src).on('change', gulp.series('build'));
-  gulp.watch(paths.scripts.src).on('change', gulp.series('build'));
+  gulp.watch(paths.static.src).on('change', gulp.series('dev'));
+  gulp.watch(paths.styles.src).on('change', gulp.series('dev'));
+  gulp.watch(paths.scripts.src).on('change', gulp.series('dev'));
 });
 
-gulp.task('build', gulp.series('clean', ['static', 'sass', 'js', 'img', 'bootstrap']));
+gulp.task('dev', gulp.series('clean', ['static', 'sass', 'js', 'img', 'bootstrap']));
+gulp.task('build', gulp.series('clean', ['static', 'sass', 'js', 'img-build', 'bootstrap']));
 
-gulp.task('default', gulp.series('build', ['watch']));
+gulp.task('default', gulp.series('dev', ['watch']));
