@@ -49,6 +49,16 @@ gulp.task('sass', (done) => {
     .src(paths.styles.src)
     .pipe(sass())
     .pipe(autoprefixer())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(paths.styles.dest));
+  done();
+});
+
+gulp.task('sass:build', (done) => {
+  gulp
+    .src(paths.styles.src)
+    .pipe(sass())
+    .pipe(autoprefixer())
     .pipe(cleanCSS())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(paths.styles.dest));
@@ -56,6 +66,14 @@ gulp.task('sass', (done) => {
 });
 
 gulp.task('js', (done) => {
+  gulp
+    .src(paths.scripts.src)
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(paths.scripts.dest));
+  done();
+});
+
+gulp.task('js:build', (done) => {
   gulp
     .src(paths.scripts.src)
     .pipe(
@@ -74,7 +92,7 @@ gulp.task('img', (done) => {
   done();
 });
 
-gulp.task('img-build', (done) => {
+gulp.task('img:build', (done) => {
   gulp.src(paths.images.src).pipe(imagemin()).pipe(gulp.dest(paths.images.dest));
   done();
 });
@@ -92,6 +110,6 @@ gulp.task('watch', () => {
 });
 
 gulp.task('dev', gulp.series('clean', ['static', 'sass', 'js', 'img', 'bootstrap']));
-gulp.task('build', gulp.series('clean', ['static', 'sass', 'js', 'img-build', 'bootstrap']));
+gulp.task('build', gulp.series('clean', ['static', 'sass:build', 'js:build', 'img:build', 'bootstrap']));
 
 gulp.task('default', gulp.series('dev', ['watch']));
