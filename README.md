@@ -1,6 +1,6 @@
 # gulp-project-template
 
-This is ready-to-use project template with set up gulp, babel, eslint and prettier
+Gulp project boilerplate with set up gulp, babel, eslint and prettier
 
 ## Development
 
