@@ -1,4 +1,4 @@
-# gulp-project-template
+# gulp-project-boilerplate
 
 Gulp project boilerplate with set up gulp, babel, eslint and prettier
 
